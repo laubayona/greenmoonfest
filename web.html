@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-seria;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: #39ff14; /* Verde neón */
+            flex-direction: column;
+            text-align: center;
+        }
+        .message {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 60px #39ff14;
+        }
+        .countdown {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 60px #39ff14;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">#GreenMoonFest2025</div>
+    <div class="countdown" id="countdown"></div>
+    
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date("2025-09-01T00:00:00").getTime(); // Nueva fecha
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").innerHTML = "¡El evento ha comenzado!";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Llamar la primera vez sin esperar 1s
+    </script>
+</body>
+</html>
